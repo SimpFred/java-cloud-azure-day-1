@@ -42,7 +42,7 @@ public class Album {
 
     @ManyToOne
     @JoinColumn(name = "label_id", nullable = false)
-    @JsonIncludeProperties({"name", "location"})
+    @JsonIncludeProperties({"name", "location", "id"})
     private Label label;
 
     public Album(String title, int year, String genre, int numberOfTracks) {

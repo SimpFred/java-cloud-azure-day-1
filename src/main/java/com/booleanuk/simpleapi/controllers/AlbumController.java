@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/albums")
+@CrossOrigin
 public class AlbumController extends GenericController<Album, Integer> {
 
     @Autowired
@@ -65,7 +66,13 @@ public class AlbumController extends GenericController<Album, Integer> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "One or more artists with the given ids were not found");
         }
 
+        System.out.println(album.getNumberOfTracks());
         existingAlbum.setArtists(artists);
+        existingAlbum.setNumberOfTracks(album.getNumberOfTracks());
+        existingAlbum.setYear(album.getYear());
+        existingAlbum.setGenre(album.getGenre());
+        existingAlbum.setLabel(album.getLabel());
+        existingAlbum.setTitle(album.getTitle());
 
         try {
             Album updatedAlbum = albumRepository.save(existingAlbum);
